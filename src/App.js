@@ -24,8 +24,6 @@ class BooksApp extends Component {
 
 
   update_books_details = (book, shelf) =>{
-    console.log(book);
-    console.log(shelf);
     BooksAPI.update(book, shelf).then(()=>{
       this.fetch_books_details()
     })
@@ -34,9 +32,22 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <ListBook
-          books={this.state.Books}
-          onChange={this.update_books_details}/>
+        <Route
+          exact path="/"
+          render={()=>(
+            <ListBook
+              books={this.state.Books}
+              onChange={this.update_books_details}
+              />
+          )}/>
+        <Route
+          exact path="/search"
+          render={({history})=> (
+            <BookSearch
+              onChange={this.update_books_details}
+              history={history}
+            />
+          )}/>
       </div>
     )
   }

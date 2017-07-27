@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BookShelf from './Book_Shelf'
+import { Link } from 'react-router-dom'
 class ListBook extends Component {
   render () {
     const books = this.props.books
@@ -14,23 +15,23 @@ class ListBook extends Component {
             <BookShelf books={books.filter((book)=>(
                 book.shelf === "currentlyReading"
               ))}
-              title = "Currently Reading"
+              title="Currently Reading"
               onChangeShelf={this.props.onChange}/>
 
             <BookShelf books={books.filter((book)=>(
                 book.shelf === "read"
               ))}
-              title = "Read"
+              title="Read"
               onChangeShelf={this.props.onChange}/>
             <BookShelf books={books.filter((book)=>(
                 book.shelf === "wantToRead"
               ))}
-              title = "Want to Read"
+              title="Want to Read"
               onChangeShelf={this.props.onChange}/>
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+          <Link to='/search'>Add a book</Link>
         </div>
       </div>
     )

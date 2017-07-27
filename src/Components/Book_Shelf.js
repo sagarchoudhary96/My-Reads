@@ -15,7 +15,7 @@ class BookShelf extends Component {
               <Book
                 book={book}
                 key={index}
-                onUpdate = {(shelf)=>{
+                onUpdate={(shelf)=>{
                   this.update_book(book,shelf)
                 }}
                 />
