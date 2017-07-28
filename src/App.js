@@ -1,5 +1,5 @@
-import React, { Component} from 'react'
-import { Route } from 'react-router-dom'
+import React, {Component} from 'react'
+import {Route} from 'react-router-dom'
 import * as BooksAPI from './Utils/BooksAPI'
 import ListBook from './Components/List_Book'
 import BookSearch from './Components/Book_Search'
@@ -10,21 +10,18 @@ class BooksApp extends Component {
     Books: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetch_books_details()
   }
 
   fetch_books_details = () => {
-    BooksAPI.getAll().then((books)=> {
-      this.setState({
-        Books: books
-      })
+    BooksAPI.getAll().then((books) => {
+      this.setState({Books: books})
     })
   }
 
-
-  update_books_details = (book, shelf) =>{
-    BooksAPI.update(book, shelf).then(()=>{
+  update_books_details = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
       this.fetch_books_details()
     })
   }
@@ -32,22 +29,8 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route
-          exact path="/"
-          render={()=>(
-            <ListBook
-              books={this.state.Books}
-              onChange={this.update_books_details}
-              />
-          )}/>
-        <Route
-          exact path="/search"
-          render={({history})=> (
-            <BookSearch
-              onChange={this.update_books_details}
-              history={history}
-            />
-          )}/>
+        <Route exact path="/" render={() => (<ListBook books={this.state.Books} onChange={this.update_books_details}/>)}/>
+        <Route exact path="/search" render={({history}) => (<BookSearch onChange={this.update_books_details} history={history}/>)}/>
       </div>
     )
   }
