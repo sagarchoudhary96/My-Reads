@@ -30,7 +30,7 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (<ListBook books={this.state.Books} onChange={this.update_books_details}/>)}/>
-        <Route exact path="/search" render={({history}) => (<BookSearch onChange={this.update_books_details} history={history}/>)}/>
+        <Route exact path="/search" render={({history}) => (<BookSearch onChange={this.update_books_details} myBooks={this.state.Books}/>)}/>
       </div>
     )
   }
